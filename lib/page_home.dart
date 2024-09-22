@@ -209,9 +209,16 @@ class _PageHomeState extends State<PageHome> {
   Widget _bottomNavigationBarWidget() {
     return BottomNavigationBar(
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/home_off.svg", width: 22, height: 22), label: 'Home'),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/notes_off.svg", width: 22, height: 22), label: 'Neighborhood'),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/location_off.svg", width: 22, height: 22), label: 'My Area'),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/chat_off.svg", width: 22, height: 22), label: 'Chating'),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/user_off.svg", width: 22, height: 22), label: 'My Info'),
       ],
     );
   }
