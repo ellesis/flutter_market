@@ -135,77 +135,90 @@ class _PageHomeState extends State<PageHome> {
   }
 
   Widget _bodyWidget() {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      itemCount: 10,
-      separatorBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 1,
-          color: Colors.grey,
-        );
-      },
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                child: Image.asset(
-                  data[index]["image"] ?? '',
-                  width: 100,
-                  height: 100,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  height: 100,
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        data[index]["title"] ?? '',
-                        style: TextStyle(fontSize: 15),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        data[index]["location"] ?? '',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black.withOpacity(0.3),
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        data[index]["price"] ?? '',
-                        style: TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(height: 5),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            SvgPicture.asset(
-                              "assets/svg/heart_off.svg",
-                              width: 13,
-                              height: 13,
-                            ),
-                            Text(data[index]["likes"] ?? ''),
-                          ],
-                        ),
-                      ),
-                    ],
+    switch (_currentPageIndex) {
+      case 0:
+        return ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          itemCount: 10,
+          separatorBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 1,
+              color: Colors.grey,
+            );
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    child: Image.asset(
+                      data[index]["image"] ?? '',
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
-                ),
+                  Expanded(
+                    child: Container(
+                      height: 100,
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data[index]["title"] ?? '',
+                            style: TextStyle(fontSize: 15),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            data[index]["location"] ?? '',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black.withOpacity(0.3),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            data[index]["price"] ?? '',
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(height: 5),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/svg/heart_off.svg",
+                                  width: 13,
+                                  height: 13,
+                                ),
+                                Text(data[index]["likes"] ?? ''),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
-      },
-    );
+      case 1:
+        return Container();
+      case 2:
+        return Container();
+      case 3:
+        return Container();
+      case 4:
+        return Container();
+    }
+
+    return Container();
   }
 
   BottomNavigationBarItem _bottomNavigationBarItem(String iconName, String label) {
