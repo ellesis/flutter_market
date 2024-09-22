@@ -10,10 +10,12 @@ class PageHome extends StatefulWidget {
 
 class _PageHomeState extends State<PageHome> {
   List<Map<String, String>> data = [];
+  late int _currentPageIndex;
 
   @override
   void initState() {
     super.initState();
+    _currentPageIndex = 0;
     data = [
       {
         "cid": "1",
@@ -206,20 +208,31 @@ class _PageHomeState extends State<PageHome> {
     );
   }
 
+  BottomNavigationBarItem _bottomNavigationBarItem(String iconName, String label) {
+    return BottomNavigationBarItem(
+      icon: SvgPicture.asset("assets/svg/${iconName}_off.svg", width: 22, height: 22),
+      label: label,
+    );
+  }
+
   Widget _bottomNavigationBarWidget() {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      onTap: (int index) {
+        setState(() {
+          _currentPageIndex = index;
+        });
+      },
+      currentIndex: _currentPageIndex,
       items: [
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/home_off.svg", width: 22, height: 22), label: 'Home'),
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/notes_off.svg", width: 22, height: 22), label: 'Neighborhood'),
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/location_off.svg", width: 22, height: 22), label: 'My Area'),
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/chat_off.svg", width: 22, height: 22), label: 'Chating'),
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/user_off.svg", width: 22, height: 22), label: 'My Info'),
+        _bottomNavigationBarItem("home", "Home"),
+        _bottomNavigationBarItem("notes", "Neighborhood"),
+        _bottomNavigationBarItem("location", "My Area"),
+        _bottomNavigationBarItem("chat", "Chating"),
+        _bottomNavigationBarItem("user", "My Items"),
       ],
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
     );
   }
 
